@@ -7,7 +7,6 @@ const FitLogContext = createContext(null);
 
 const PLAN_KEY = "fitlog-plan";
 const SAVED_KEY = "fitlog-saved";
-const PLAN_LIMIT = 5;
 
 function getStoredItems(key) {
     if (typeof window === "undefined") return [];
@@ -15,6 +14,7 @@ function getStoredItems(key) {
     try {
         const stored = localStorage.getItem(key);
         const parsed = stored ? JSON.parse(stored) : [];
+
         return Array.isArray(parsed) ? parsed : [];
     } catch {
         return [];
@@ -30,22 +30,24 @@ export function FitLogProvider({ children }) {
     const toastTimer = useRef(null);
 
     useEffect(() => {
-    const timer = setTimeout(() => {
-        setPlan(getStoredItems(PLAN_KEY));
-        setSaved(getStoredItems(SAVED_KEY));
-        setIsReady(true);
-    }, 0);
+        const timer = setTimeout(() => {
+            setPlan(getStoredItems(PLAN_KEY));
+            setSaved(getStoredItems(SAVED_KEY));
+            setIsReady(true);
+        }, 0);
 
-    return () => clearTimeout(timer);
+        return () => clearTimeout(timer);
     }, []);
 
     useEffect(() => {
         if (!isReady) return;
+
         localStorage.setItem(PLAN_KEY, JSON.stringify(plan));
     }, [plan, isReady]);
 
     useEffect(() => {
         if (!isReady) return;
+
         localStorage.setItem(SAVED_KEY, JSON.stringify(saved));
     }, [saved, isReady]);
 
@@ -85,11 +87,6 @@ export function FitLogProvider({ children }) {
                 return currentPlan;
             }
 
-            if (currentPlan.length >= PLAN_LIMIT) {
-                showToast("Today's plan can contain only five workouts", "error");
-                return currentPlan;
-            }
-
             showToast("Added to today's plan");
 
             return [
@@ -119,6 +116,7 @@ export function FitLogProvider({ children }) {
             }
 
             showToast("Saved for later");
+
             return [...currentSaved, workout];
         });
     };
@@ -178,7 +176,6 @@ export function FitLogProvider({ children }) {
                 isReady,
                 planCount: plan.length,
                 savedCount: saved.length,
-                planLimit: PLAN_LIMIT,
                 addToPlan,
                 saveWorkout,
                 removeFromPlan,
