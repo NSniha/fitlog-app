@@ -1,6 +1,6 @@
-<div align="center">
+<div>
 
-# FitLog — Workout Library
+# <img width="28" height="28" alt="SVG" src="https://github.com/user-attachments/assets/88400644-699c-4d2d-8316-6547d0ae5479" /> FitLog — Workout Library
 
 **Train with purpose. Track every workout.**
 
@@ -25,6 +25,10 @@ This project was built for **educational and academic purposes**, demonstrating 
 ---
 
 ## Preview
+<<<<<<< HEAD
+=======
+<img width="1280" height="800" alt="preview (1)" src="https://github.com/user-attachments/assets/3965add8-b7fa-4a07-86fe-cc0d76aa2be1" />
+>>>>>>> b0d223be4dd17911d00b46faf5b34984ed50e629
 
 ---
 
