@@ -292,7 +292,7 @@ This project was developed for **educational and academic purposes** as a practi
 
 ---
 
-<div align="center">
+<div>
 
 **FitLog — Train with purpose. Track every workout.**
 
