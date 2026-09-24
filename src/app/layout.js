@@ -1,6 +1,7 @@
 import { Inter, Oswald } from "next/font/google";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { FitLogProvider } from "@/context/FitLogContext";
 import "./globals.css";
 
 const inter = Inter({
@@ -24,10 +25,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${oswald.variable} min-h-screen bg-[#0b0d10] text-white antialiased`}>
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
+      <body className={`${inter.variable} ${oswald.variable} flex min-h-screen flex-col bg-[#0b0d10] text-white antialiased`}>
+        <FitLogProvider>
+          <Navbar />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </FitLogProvider>
       </body>
     </html>
   );

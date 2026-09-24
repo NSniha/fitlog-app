@@ -6,14 +6,14 @@ import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import Container from "./Container";
+import { useFitLog } from "@/context/FitLogContext";
 
 export default function Navbar() {
     const pathname = usePathname();
+    const { planCount, savedCount } = useFitLog();
+
     const [menuOpen, setMenuOpen] = useState(false);
     const [activeNav, setActiveNav] = useState(pathname === "/my-plan" ? "plan" : "workouts");
-
-    const planCount = 0;
-    const savedCount = 0;
 
     const handleNavClick = (nav) => {
         setActiveNav(nav);
@@ -29,11 +29,11 @@ export default function Navbar() {
                     </Link>
 
                     <div className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 items-center gap-9 md:flex">
-                        <Link href="/my-plan" onClick={() => handleNavClick("workouts")} className={`text-[15px] font-medium transition-all duration-300 ease-out hover:-translate-y-x hover:text-[#c8ff00]! ${activeNav === "workouts" ? "text-[#c8ff00]!" : "text-white/75!"}`}>
+                        <Link href="/my-plan" onClick={() => handleNavClick("workouts")} className={`text-[15px] font-medium transition-all duration-300 ease-out hover:-translate-y-px hover:text-[#c8ff00]! ${activeNav === "workouts" ? "text-[#c8ff00]!" : "text-white!/75"}`}>
                             Workouts
                         </Link>
 
-                        <Link href="/my-plan" onClick={() => handleNavClick("plan")} className={`text-[15px] font-medium transition-all duration-300 ease-out hover:-translate-y-x hover:text-[#c8ff00]! ${activeNav === "plan" ? "text-[#c8ff00]!" : "text-white/75!"}`}>
+                        <Link href="/my-plan" onClick={() => handleNavClick("plan")} className={`text-[15px] font-medium transition-all duration-300 ease-out hover:-translate-y-px hover:text-[#c8ff00]! ${activeNav === "plan" ? "text-[#c8ff00]!" : "text-white!/75"}`}>
                             My Plan
                         </Link>
                     </div>
