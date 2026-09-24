@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import Container from "@/components/layout/Container";
 import PlanMetrics from "@/components/plan/PlanMetrics";
 import PlanTabs from "@/components/plan/PlanTabs";
@@ -11,8 +12,11 @@ import Loader from "@/components/shared/Loader";
 import { useFitLog } from "@/context/FitLogContext";
 
 export default function MyPlanPage() {
+    const router = useRouter();
+    const searchParams = useSearchParams();
     const { plan, saved, isReady, removeFromPlan, removeFromSaved, markAsDone } = useFitLog();
-    const [activeTab, setActiveTab] = useState("plan");
+
+    const activeTab = searchParams.get("tab") === "saved" ? "saved" : "plan";
     const [sortBy, setSortBy] = useState("duration");
 
     const metrics = useMemo(() => ({
@@ -30,6 +34,10 @@ export default function MyPlanPage() {
             return (Number(a.duration) || 0) - (Number(b.duration) || 0);
         });
     }, [activeTab, plan, saved, sortBy]);
+
+    const handleTabChange = (tab) => {
+        router.replace(`/my-plan?tab=${tab}`, { scroll: false });
+    };
 
     const handleRemove = (id) => {
         if (activeTab === "plan") removeFromPlan(id);
@@ -49,7 +57,7 @@ export default function MyPlanPage() {
                 </div>
 
                 <div className="mt-8 flex w-full items-center justify-between gap-2 sm:mt-9 sm:gap-4">
-                    <PlanTabs activeTab={activeTab} onChange={setActiveTab} />
+                    <PlanTabs activeTab={activeTab} onChange={handleTabChange} />
                     <SortDropdown value={sortBy} onChange={setSortBy} />
                 </div>
 
