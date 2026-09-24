@@ -1,6 +1,6 @@
 <div>
 
-# FitLog — Workout Library
+# <img width="28" height="28" alt="SVG" src="https://github.com/user-attachments/assets/88400644-699c-4d2d-8316-6547d0ae5479" />FitLog — Workout Library
 
 **Train with purpose. Track every workout.**
 
