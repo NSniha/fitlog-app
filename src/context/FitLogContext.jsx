@@ -14,7 +14,6 @@ function getStoredItems(key) {
     try {
         const stored = localStorage.getItem(key);
         const parsed = stored ? JSON.parse(stored) : [];
-
         return Array.isArray(parsed) ? parsed : [];
     } catch {
         return [];
@@ -24,9 +23,9 @@ function getStoredItems(key) {
 export function FitLogProvider({ children }) {
     const [plan, setPlan] = useState([]);
     const [saved, setSaved] = useState([]);
+    const [planTab, setPlanTab] = useState("plan");
     const [isReady, setIsReady] = useState(false);
     const [toast, setToast] = useState(null);
-
     const toastTimer = useRef(null);
 
     useEffect(() => {
@@ -41,28 +40,22 @@ export function FitLogProvider({ children }) {
 
     useEffect(() => {
         if (!isReady) return;
-
         localStorage.setItem(PLAN_KEY, JSON.stringify(plan));
     }, [plan, isReady]);
 
     useEffect(() => {
         if (!isReady) return;
-
         localStorage.setItem(SAVED_KEY, JSON.stringify(saved));
     }, [saved, isReady]);
 
     useEffect(() => {
         return () => {
-            if (toastTimer.current) {
-                clearTimeout(toastTimer.current);
-            }
+            if (toastTimer.current) clearTimeout(toastTimer.current);
         };
     }, []);
 
     const showToast = (message, type = "success") => {
-        if (toastTimer.current) {
-            clearTimeout(toastTimer.current);
-        }
+        if (toastTimer.current) clearTimeout(toastTimer.current);
 
         setToast({ message, type });
 
@@ -78,9 +71,7 @@ export function FitLogProvider({ children }) {
         }
 
         setPlan((currentPlan) => {
-            const alreadyAdded = currentPlan.some(
-                (item) => String(item.id) === String(workout.id)
-            );
+            const alreadyAdded = currentPlan.some((item) => String(item.id) === String(workout.id));
 
             if (alreadyAdded) {
                 showToast("Workout is already in today's plan", "error");
@@ -88,14 +79,7 @@ export function FitLogProvider({ children }) {
             }
 
             showToast("Added to today's plan");
-
-            return [
-                ...currentPlan,
-                {
-                    ...workout,
-                    done: false,
-                },
-            ];
+            return [...currentPlan, { ...workout, done: false }];
         });
     };
 
@@ -106,9 +90,7 @@ export function FitLogProvider({ children }) {
         }
 
         setSaved((currentSaved) => {
-            const alreadySaved = currentSaved.some(
-                (item) => String(item.id) === String(workout.id)
-            );
+            const alreadySaved = currentSaved.some((item) => String(item.id) === String(workout.id));
 
             if (alreadySaved) {
                 showToast("Workout is already saved", "error");
@@ -116,37 +98,23 @@ export function FitLogProvider({ children }) {
             }
 
             showToast("Saved for later");
-
             return [...currentSaved, workout];
         });
     };
 
     const removeFromPlan = (id) => {
-        setPlan((currentPlan) =>
-            currentPlan.filter((item) => String(item.id) !== String(id))
-        );
-
+        setPlan((currentPlan) => currentPlan.filter((item) => String(item.id) !== String(id)));
         showToast("Workout removed from today's plan");
     };
 
     const removeFromSaved = (id) => {
-        setSaved((currentSaved) =>
-            currentSaved.filter((item) => String(item.id) !== String(id))
-        );
-
+        setSaved((currentSaved) => currentSaved.filter((item) => String(item.id) !== String(id)));
         showToast("Workout removed from saved list");
     };
 
     const markAsDone = (id) => {
         setPlan((currentPlan) =>
-            currentPlan.map((item) =>
-                String(item.id) === String(id)
-                    ? {
-                        ...item,
-                        done: true,
-                    }
-                    : item
-            )
+            currentPlan.map((item) => String(item.id) === String(id) ? { ...item, done: true } : item)
         );
 
         showToast("Workout marked as done");
@@ -154,18 +122,12 @@ export function FitLogProvider({ children }) {
 
     const isInPlan = (id) => {
         if (!id) return false;
-
-        return plan.some(
-            (item) => String(item.id) === String(id)
-        );
+        return plan.some((item) => String(item.id) === String(id));
     };
 
     const isSaved = (id) => {
         if (!id) return false;
-
-        return saved.some(
-            (item) => String(item.id) === String(id)
-        );
+        return saved.some((item) => String(item.id) === String(id));
     };
 
     return (
@@ -173,6 +135,8 @@ export function FitLogProvider({ children }) {
             value={{
                 plan,
                 saved,
+                planTab,
+                setPlanTab,
                 isReady,
                 planCount: plan.length,
                 savedCount: saved.length,
@@ -186,11 +150,7 @@ export function FitLogProvider({ children }) {
             }}
         >
             {children}
-
-            <Toast
-                toast={toast}
-                onClose={() => setToast(null)}
-            />
+            <Toast toast={toast} onClose={() => setToast(null)} />
         </FitLogContext.Provider>
     );
 }

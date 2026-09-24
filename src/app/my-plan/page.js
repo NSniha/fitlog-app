@@ -1,7 +1,6 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
 import Container from "@/components/layout/Container";
 import PlanMetrics from "@/components/plan/PlanMetrics";
 import PlanTabs from "@/components/plan/PlanTabs";
@@ -12,36 +11,32 @@ import Loader from "@/components/shared/Loader";
 import { useFitLog } from "@/context/FitLogContext";
 
 export default function MyPlanPage() {
-    const router = useRouter();
-    const searchParams = useSearchParams();
-    const { plan, saved, isReady, removeFromPlan, removeFromSaved, markAsDone } = useFitLog();
-
-    const activeTab = searchParams.get("tab") === "saved" ? "saved" : "plan";
+    const { plan, saved, planTab, setPlanTab, isReady, removeFromPlan, removeFromSaved, markAsDone } = useFitLog();
     const [sortBy, setSortBy] = useState("duration");
 
+    const activeWorkouts = useMemo(() => {
+        return planTab === "saved" ? saved : plan;
+    }, [planTab, plan, saved]);
+
     const metrics = useMemo(() => ({
-        exercises: plan.length,
-        minutes: plan.reduce((total, workout) => total + (Number(workout.duration) || 0), 0),
-        calories: plan.reduce((total, workout) => total + (Number(workout.caloriesBurned) || 0), 0),
-    }), [plan]);
+        exercises: activeWorkouts.length,
+        minutes: activeWorkouts.reduce((total, workout) => total + (Number(workout.duration) || 0), 0),
+        calories: activeWorkouts.reduce((total, workout) => total + (Number(workout.caloriesBurned) || 0), 0),
+    }), [activeWorkouts]);
 
     const sortedWorkouts = useMemo(() => {
-        const workouts = activeTab === "plan" ? [...plan] : [...saved];
+        const workouts = [...activeWorkouts];
 
         return workouts.sort((a, b) => {
             if (sortBy === "calories") return (Number(b.caloriesBurned) || 0) - (Number(a.caloriesBurned) || 0);
             if (sortBy === "rating") return (Number(b.rating) || 0) - (Number(a.rating) || 0);
             return (Number(a.duration) || 0) - (Number(b.duration) || 0);
         });
-    }, [activeTab, plan, saved, sortBy]);
-
-    const handleTabChange = (tab) => {
-        router.replace(`/my-plan?tab=${tab}`, { scroll: false });
-    };
+    }, [activeWorkouts, sortBy]);
 
     const handleRemove = (id) => {
-        if (activeTab === "plan") removeFromPlan(id);
-        else removeFromSaved(id);
+        if (planTab === "saved") removeFromSaved(id);
+        else removeFromPlan(id);
     };
 
     return (
@@ -57,7 +52,7 @@ export default function MyPlanPage() {
                 </div>
 
                 <div className="mt-8 flex w-full items-center justify-between gap-2 sm:mt-9 sm:gap-4">
-                    <PlanTabs activeTab={activeTab} onChange={handleTabChange} />
+                    <PlanTabs activeTab={planTab} onChange={setPlanTab} />
                     <SortDropdown value={sortBy} onChange={setSortBy} />
                 </div>
 
@@ -65,11 +60,11 @@ export default function MyPlanPage() {
                     {!isReady ? (
                         <Loader />
                     ) : sortedWorkouts.length === 0 ? (
-                        <EmptyState activeTab={activeTab} />
+                        <EmptyState activeTab={planTab} />
                     ) : (
                         <div className="space-y-4">
                             {sortedWorkouts.map((workout) => (
-                                <PlanCard key={workout.id} workout={workout} type={activeTab} onRemove={handleRemove} onMarkDone={markAsDone} />
+                                <PlanCard key={workout.id} workout={workout} type={planTab} onRemove={handleRemove} onMarkDone={markAsDone} />
                             ))}
                         </div>
                     )}
