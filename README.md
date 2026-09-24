@@ -1,4 +1,4 @@
-<div align="center">
+<div>
 
 # FitLog — Workout Library
 
