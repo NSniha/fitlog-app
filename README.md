@@ -1,70 +1,115 @@
+<div align="center">
+
 # FitLog — Workout Library
 
-FitLog is a modern and responsive workout planning web application built with Next.js. Users can explore workouts, view detailed exercise information, create a workout plan, save workouts for later, track workout statistics, sort exercises, and manage their training through a clean and interactive interface.
+**Train with purpose. Track every workout.**
 
-## Live Website
+FitLog is a modern, responsive workout planning web app built with **Next.js**. Browse workouts, view detailed exercise info, build a daily plan, save favorites, track live stats, and manage your training — all through a clean, fast, and fully responsive interface.
 
-https://fitlog-app-sigma.vercel.app
+[![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://react.dev/)
+[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![DaisyUI](https://img.shields.io/badge/DaisyUI-5A0EF8?style=for-the-badge&logo=daisyui&logoColor=white)](https://daisyui.com/)
+[![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://vercel.com/)
+
+[**Live Demo**](https://fitlog-app-sigma.vercel.app) · [Report Bug](https://github.com/NSniha/fitlog-app/issues) · [Request Feature](https://github.com/NSniha/fitlog-app/issues)
+
+</div>
+
+---
+
+## About
+
+FitLog is a full-featured **workout tracker and exercise library** built as a practical, real-world implementation of **Next.js App Router**. It pulls live workout data from a REST API and lets users build a daily training plan, save exercises for later, and monitor progress through live statistics — all backed by persistent local storage, so nothing is lost on refresh.
+
+This project was built for **educational and academic purposes**, demonstrating modern frontend architecture, state management, dynamic routing, and responsive UI design.
+
+---
+
+## Preview
+
+<div align="center">
+
+| Home / Workout Library | Workout Details |
+|---|---|
+| ![FitLog Home](./public/assets/images/preview-home.png) | ![FitLog Workout Details](./public/assets/images/preview-details.png) |
+
+| My Plan | Mobile View |
+|---|---|
+| ![FitLog My Plan](./public/assets/images/preview-myplan.png) | ![FitLog Mobile View](./public/assets/images/preview-mobile.png) |
+
+</div>
+
+> **Note:** Add your actual screenshots to `public/assets/images/` using the filenames above (or update the paths to match your own images). This gives visitors an instant visual look at the app right from the README.
+
+---
 
 ## Features
 
-- Browse workouts from a REST API
-- View dynamic workout details
+- Browse workouts from a live REST API
+- View detailed, dynamic workout pages
 - Add workouts to Today's Plan
 - Save workouts for later
 - Live Plan and Saved counters
-- Persistent data using localStorage
+- Persistent data using `localStorage`
 - Live Exercises, Minutes, and Calories statistics
-- Sort workouts by Duration, Calories, and Rating
+- Sort workouts by Duration, Calories, or Rating
 - Mark planned workouts as completed
 - Remove workouts from Plan or Saved
 - Duplicate workout prevention
 - Custom toast notifications
 - Custom loading UI
 - Custom 404 page
-- Responsive Navbar with mobile menu
-- Fully responsive desktop, tablet, and mobile design
+- Fully responsive navbar with mobile menu
+- Fully responsive across desktop, tablet, and mobile
 
-## Technologies
+---
 
-- Next.js
-- React
-- JavaScript ES6
-- Next.js App Router
-- Tailwind CSS
-- DaisyUI
-- Lucide React
-- React Context API
-- localStorage
-- REST API
-- Vercel
+## Tech Stack
+
+| Technology | Purpose |
+|---|---|
+| ![Next.js](https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=next.js&logoColor=white) | React framework with App Router for routing & rendering |
+| ![React](https://img.shields.io/badge/React-20232A?style=flat-square&logo=react&logoColor=61DAFB) | UI library for building components |
+| ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black) | Core programming language (ES6) |
+| ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=flat-square&logo=tailwind-css&logoColor=white) | Utility-first CSS styling |
+| ![DaisyUI](https://img.shields.io/badge/DaisyUI-5A0EF8?style=flat-square&logo=daisyui&logoColor=white) | Tailwind component library |
+| ![Lucide](https://img.shields.io/badge/Lucide-1A1A1A?style=flat-square&logo=lucide&logoColor=white) | Icon set |
+| ![Vercel](https://img.shields.io/badge/Vercel-000000?style=flat-square&logo=vercel&logoColor=white) | Hosting & deployment |
+
+**Also uses:** React Context API · Browser `localStorage` · REST API integration
+
+---
 
 ## Main Routes
 
 | Route | Description |
-| --- | --- |
+|---|---|
 | `/` | Home and Workout Library |
 | `/workout/[id]` | Dynamic Workout Details |
 | `/my-plan` | Today's Plan and Saved Workouts |
 | Invalid Route | Custom 404 Page |
 
+---
+
 ## API
 
-### All Workouts
-
-```text
+**All Workouts**
+```
 https://api.abcz.workers.dev/api/fitlog
 ```
 
-### Single Workout
-
-```text
+**Single Workout**
+```
 https://api.abcz.workers.dev/api/fitlog/:id
 ```
 
+---
+
 ## Project Structure
 
-```text
+```
 fitlog/
 ├── public/
 │   └── assets/
@@ -99,11 +144,11 @@ fitlog/
 └── README.md
 ```
 
+---
+
 ## State Management
 
-FitLog uses React Context API to manage shared application state.
-
-The application manages:
+FitLog uses **React Context API** to manage shared application state, including:
 
 - Today's Plan
 - Saved Workouts
@@ -112,192 +157,156 @@ The application manages:
 - Active Plan/Saved Tab
 - Workout Completion State
 
-Plan and Saved data are stored in browser localStorage so they remain available after page reload.
+Plan and Saved data are stored in browser `localStorage` so they persist after page reload.
+
+---
 
 ## Workout Details
 
 Each workout has a dynamic details page containing:
 
-- Workout image
-- Name and description
-- Muscle groups
-- Equipment
-- Difficulty
-- Sets and reps
-- Duration
-- Calories
-- Rating
-- Instructions
-- Add to Today's Plan
-- Save for Later
+- Workout image, name & description
+- Muscle groups & equipment
+- Difficulty, sets & reps
+- Duration, calories & rating
+- Step-by-step instructions
+- Add to Today's Plan / Save for Later
+
+---
 
 ## My Plan
 
-The My Plan page contains two interactive tabs:
-
-```text
-Today's Plan
-Saved
-```
-
-Users can:
+The My Plan page has two interactive tabs — **Today's Plan** and **Saved** — where users can:
 
 - View planned or saved workouts
 - Check live workout statistics
 - Sort workouts
-- View workout details
 - Mark planned workouts as done
 - Remove workouts
 
-The page URL remains clean:
+Accessible at a clean, persistent `/my-plan` URL.
 
-```text
-/my-plan
-```
+---
 
 ## Sorting
 
 Workouts can be sorted by:
 
-- Duration
+- Duration *(default)*
 - Calories
 - Rating
 
-The default sorting option is Duration.
+---
 
 ## Responsive Design
 
-FitLog is optimized for:
+Optimized for Desktop, Laptop, Tablet, and Mobile — including a mobile navigation menu, responsive workout cards, compact statistics, mobile-friendly workout details, and adaptive layouts.
 
-- Desktop
-- Laptop
-- Tablet
-- Mobile
+---
 
-Responsive features include a mobile navigation menu, responsive workout cards, compact workout statistics, mobile-friendly workout details, inline action controls, and adaptive layouts.
+## Fonts & Design
 
-## Fonts and Design
+| Element | Value |
+|---|---|
+| Headings | **Oswald** |
+| Body / UI | **Inter** |
 
-The project uses:
+**Color Palette**
 
-- **Oswald** for headings
-- **Inter** for body text and interface elements
+| Role | Hex |
+|---|---|
+| Background | `#0b0d10` |
+| Surface | `#15181e` |
+| Border | `#292e37` |
+| Accent | `#c8ff00` |
+| Primary Text | `#f5f6f7` |
+| Muted Text | `#8f949e` |
 
-Main design colors:
+Layout uses a shared max container width of `1400px`.
 
-```text
-Background:   #0b0d10
-Surface:      #15181e
-Border:       #292e37
-Accent:       #c8ff00
-Primary Text: #f5f6f7
-Muted Text:   #8f949e
-```
+---
 
-The layout uses a shared maximum container width of `1400px`.
-
-## Installation
+## Getting Started
 
 Clone the repository:
-
 ```bash
-git clone <your-repository-url>
+git clone https://github.com/NSniha/fitlog-app.git
 ```
 
 Go to the project folder:
-
 ```bash
-cd fitlog
+cd fitlog-app
 ```
 
 Install dependencies:
-
 ```bash
 npm install
 ```
 
 Run the development server:
-
 ```bash
 npm run dev
 ```
 
-Open:
-
-```text
+Open in your browser:
+```
 http://localhost:3000
 ```
 
-## Available Commands
+### Available Commands
 
 ```bash
-npm run dev
-npm run build
-npm start
-npm run lint
+npm run dev      # Start development server
+npm run build    # Build for production
+npm start        # Start production server
+npm run lint     # Run linter
 ```
 
-Before deployment, it is recommended to run:
+> Run `npm run build` before deployment to catch build-time errors.
 
-```bash
-npm run build
-```
+---
 
 ## Deployment
 
-The application is deployed on Vercel.
+Deployed on **Vercel**. After deploying, test these routes directly and after a browser refresh:
 
-After deployment, the following routes should be tested directly and after browser refresh:
-
-```text
+```
 /
 /my-plan
 /workout/1
 /random-route
 ```
 
+---
+
 ## Key Learning Outcomes
 
-This project demonstrates:
-
-- Next.js App Router
-- Dynamic Routing
+- Next.js App Router & Dynamic Routing
 - REST API Integration
-- React Context API
-- localStorage
-- State Management
-- Conditional Rendering
-- Sorting
-- Reusable Components
-- Responsive Design
-- Tailwind CSS
-- Loading and Error Handling
-- Vercel Deployment
-
-## Project Status
-
-**Completed**
-
-Core functionality includes:
-
-- Workout Library
-- Workout Details
-- Today's Plan
-- Saved Workouts
-- Live Counters
-- Workout Metrics
-- Sorting
-- Mark as Done
-- Remove Workout
-- Persistent Data
-- Responsive Design
-- Custom Loading
-- Custom 404 Page
-
-## Purpose
-
-This project was developed for educational and academic purposes as a practical implementation of modern frontend development using Next.js and React.
+- React Context API & State Management
+- Persistent storage with `localStorage`
+- Conditional Rendering & Sorting Logic
+- Reusable, modular components
+- Responsive design with Tailwind CSS
+- Loading & error handling
+- Deployment on Vercel
 
 ---
 
+## Project Status
+
+**Completed** — Core functionality includes the workout library, workout details, today's plan, saved workouts, live counters, sorting, mark-as-done, persistent data, responsive design, custom loading, and custom 404 page.
+
+---
+
+## Purpose
+
+This project was developed for **educational and academic purposes** as a practical implementation of modern frontend development using Next.js and React.
+
+---
+
+<div align="center">
+
 **FitLog — Train with purpose. Track every workout.**
+
+</div>
