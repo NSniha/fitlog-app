@@ -1,5 +1,6 @@
 import { Inter, Oswald } from "next/font/google";
 import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
 import "./globals.css";
 
 const inter = Inter({
@@ -26,6 +27,7 @@ export default function RootLayout({ children }) {
       <body className={`${inter.variable} ${oswald.variable} min-h-screen bg-[#0b0d10] text-white antialiased`}>
         <Navbar />
         <main>{children}</main>
+        <Footer />
       </body>
     </html>
   );
