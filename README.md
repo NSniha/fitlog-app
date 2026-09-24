@@ -6,14 +6,11 @@
 
 FitLog is a modern, responsive workout planning web app built with **Next.js**. Browse workouts, view detailed exercise info, build a daily plan, save favorites, track live stats, and manage your training — all through a clean, fast, and fully responsive interface.
 
-[![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
-[![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://react.dev/)
-[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
-[![DaisyUI](https://img.shields.io/badge/DaisyUI-5A0EF8?style=for-the-badge&logo=daisyui&logoColor=white)](https://daisyui.com/)
-[![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://vercel.com/)
-
-[**Live Demo**](https://fitlog-app-sigma.vercel.app) · [Report Bug](https://github.com/NSniha/fitlog-app/issues) · [Request Feature](https://github.com/NSniha/fitlog-app/issues)
+<p>
+  <a href="https://skillicons.dev">
+    <img src="https://skillicons.dev/icons?i=nextjs,react,js,tailwind,vercel&theme=dark" />
+  </a>
+</p>
 
 </div>
 
@@ -28,20 +25,6 @@ This project was built for **educational and academic purposes**, demonstrating 
 ---
 
 ## Preview
-
-<div align="center">
-
-| Home / Workout Library | Workout Details |
-|---|---|
-| ![FitLog Home](./public/assets/images/preview-home.png) | ![FitLog Workout Details](./public/assets/images/preview-details.png) |
-
-| My Plan | Mobile View |
-|---|---|
-| ![FitLog My Plan](./public/assets/images/preview-myplan.png) | ![FitLog Mobile View](./public/assets/images/preview-mobile.png) |
-
-</div>
-
-> **Note:** Add your actual screenshots to `public/assets/images/` using the filenames above (or update the paths to match your own images). This gives visitors an instant visual look at the app right from the README.
 
 ---
 
